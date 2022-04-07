@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+<h1>Flight Details</h1>
+<table class="details">
+    <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight No.</th>
+        <th>Departure</th>
+        <th>Destinations:</th>
+    </tr>
+
+    <tr>
+        <td><%= flights.airline %> </td>
+        <td><%= flights.airport %> </td>
+        <td><%= flights.flightNo %> </td>
+        <td><%= flights.departs %> </td>
+        <td><% flights.destinations.forEach(function(f) { %>
+            <li>Airport: <%= f.airport %> </li>
+            <li>Arrival: <%= f.arrival %> </li>
+            <% }); %> </td>
+    </tr>
+</table>
+
+<h2>Add a Destination</h2>
+<form action="/flights/<%= flights._id%>" method="POST" id="dest" autocomplete="off">
+  <label>Airport:</label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN">DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+  </select>
+
+    <label>Arrival Date</label>
+        <input type="date" name="arrival" >
+        <input type="submit" value="Add Destination">
+</form>
+
+<table class="ticket">
+<caption>Tickets</caption>
+    <tr>
+        <th>Seat</th>
+        <th>Price</th>
+    </tr>
+
+<% ticket.forEach(function(t) { %> 
+    <tr>
+        <td><%= t.seat %> </td>
+        <td>$ <%= t.price %> </td>
+    </tr>
+<% }) %>
+</table>
+
+<a href='/flights/<%= flights._id %>/tickets/new '>
+    <input type="button" id="add" value="Add Ticket">
+</a>
+
+</body>
+</html>
