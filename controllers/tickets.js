@@ -8,8 +8,10 @@ module.exports = {
 
 function newTicket(res, req) {
     Flight.findById(req.param.id, function(err, flight) {
+        console.log(err)
         res.render('tickets/new', {
-            flight
+            flight,
+            title: 'Add New Ticket'
         })
     })
 };
